@@ -62,7 +62,7 @@ const resolvers: Resolvers = {
           ok: false,
           error: {
             code: 500,
-            message: "Failed join process.",
+            message: "Failed user join.",
           },
         };
       }
