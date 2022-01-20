@@ -1,3 +1,4 @@
+import { PrismaClient } from "./../node_modules/.prisma/client/index.d";
 import { User } from "@prisma/client";
 
 export type Resolver = (
@@ -14,5 +15,6 @@ export type Resolvers = {
 };
 
 type Context = {
+  client: PrismaClient;
   loggedInUser?: User;
 };

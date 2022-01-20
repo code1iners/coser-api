@@ -6,6 +6,7 @@ import { resolvers, typeDefs } from "./schema";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core/dist/plugin/drainHttpServer";
 import { graphqlUploadExpress } from "graphql-upload";
 import logger from "morgan";
+import client from "./client";
 
 // Server start.
 runServer();
@@ -19,6 +20,11 @@ async function runServer() {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
+    context: (ctx) => {
+      return {
+        client,
+      };
+    },
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
