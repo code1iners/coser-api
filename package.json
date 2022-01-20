@@ -2,12 +2,20 @@
   "name": "couser-api",
   "version": "1.0.0",
   "description": "Codeliners app's authorization api server powered by Graphql.",
-  "scripts": {},
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./src/server.js --delay 1"
+  },
   "keywords": [
     "auth",
     "api",
     "graphql"
   ],
   "author": "Codeliner <codeliner96@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.10",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.10",
+    "nodemon": "^2.0.15"
+  }
 }
