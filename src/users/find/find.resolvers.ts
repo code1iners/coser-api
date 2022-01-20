@@ -12,7 +12,11 @@ const resolvers: Resolvers = {
      * @param username Username
      * @returns User | null
      */
-    findUserByUsername: async (_, { username }, { client }) => {
+    findUserByUsername: async (
+      _,
+      { username }: { username: string },
+      { client }
+    ) => {
       return client.user.findUnique({ where: { username } });
     },
 

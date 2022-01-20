@@ -6,7 +6,15 @@ import { ERROR_USERS_JOIN_UNIQUE_EMAIL } from "../../utils/constants";
 
 const resolvers: Resolvers = {
   Mutation: {
-    join: async (_, { email, username, password }, { client }) => {
+    join: async (
+      _,
+      {
+        email,
+        username,
+        password,
+      }: { email: string; username: string; password: string },
+      { client }
+    ) => {
       try {
         console.log(email, username, password);
 

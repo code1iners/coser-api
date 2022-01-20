@@ -8,7 +8,11 @@ import jwt from "jsonwebtoken";
 
 const resolvers: Resolvers = {
   Mutation: {
-    login: async (_, { email, password }, { client }) => {
+    login: async (
+      _,
+      { email, password }: { email: string; password: string },
+      { client }
+    ) => {
       try {
         // Check email is valid.
         const foundUser: { id: number; password: string } | null =
