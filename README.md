@@ -8,6 +8,6 @@ This is a codeliners app's authorization API server powered by Graphql.
 
 - [x] Join User.
 - [x] Login User.
-- [ ] Find User.
+- [x] Find User.
 - [ ] Modify User.
 - [ ] Quit User.
