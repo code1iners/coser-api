@@ -17,5 +17,16 @@
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.10",
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.5.3",
+    "@graphql-tools/merge": "^8.2.1",
+    "apollo-server-core": "^3.6.2",
+    "apollo-server-express": "^3.6.2",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
+    "graphql-upload": "^13.0.0",
+    "morgan": "^1.10.0"
   }
 }
