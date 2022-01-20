@@ -31,7 +31,7 @@ async function runServer() {
 
   apolloServer.applyMiddleware({ app, path: "/graphql" });
 
-  await new Promise((resolve) =>
+  await new Promise((resolve: any) =>
     httpServer.listen({ port: process.env.PORT }, resolve)
   );
 
