@@ -11,3 +11,4 @@ export const ERROR_USERS_FIND_SERVER_ERROR: string =
 export const ERROR_USERS_FIND_NOT_FOUND: string = "The user does not found.";
 export const ERROR_USERS_UPDATE_FAILED: string =
   "Failed user information update.";
+export const ERROR_USERS_QUIT_FAILED: string = "Failed user quit.";
