@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Codeliners app's authorization api server powered by Graphql.",
   "scripts": {
-    "dev": "nodemon --exec ts-node ./src/server --delay 1 --ext ts,js"
+    "dev": "nodemon --exec ts-node ./src/server --delay 1 --ext ts,js",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio"
   },
   "keywords": [
     "auth",
@@ -16,13 +18,19 @@
     "@babel/core": "^7.16.10",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.10",
+    "@types/graphql-upload": "^8.0.10",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^10.17.60",
     "nodemon": "^2.0.15",
+    "prettier-plugin-prisma": "^3.8.0",
+    "prisma": "^3.8.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.1",
+    "@prisma/client": "^3.8.1",
     "apollo-server-core": "^3.6.2",
     "apollo-server-express": "^3.6.2",
     "dotenv": "^14.2.0",

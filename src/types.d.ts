@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export type Resolver = (
   root: any,
   args: any,
@@ -13,9 +15,4 @@ export type Resolvers = {
 
 type Context = {
   loggedInUser?: User;
-};
-
-type User = {
-  email: string;
-  username: string;
 };
