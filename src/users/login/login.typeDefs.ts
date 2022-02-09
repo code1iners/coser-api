@@ -4,7 +4,7 @@ export default gql`
   type LoginResponse {
     ok: Boolean!
     token: String
-    error: SimpleError
+    error: CouserSimpleError
   }
 
   type Mutation {

@@ -2,7 +2,7 @@ import { Resolvers } from "../types";
 
 const resolvers: Resolvers = {
   Query: {
-    hello: () => "world",
+    couserHello: () => "world",
   },
 };
 

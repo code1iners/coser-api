@@ -1,3 +1,4 @@
+import { PRODUCTION } from "./utils/constants";
 require("dotenv").config();
 import http from "http";
 import express from "express";
@@ -7,39 +8,51 @@ import { ApolloServerPluginDrainHttpServer } from "apollo-server-core/dist/plugi
 import { graphqlUploadExpress } from "graphql-upload";
 import logger from "morgan";
 import client from "./client";
-
-// Server start.
-runServer();
+import { initEnvironment } from "./utils/envUtils";
 
 /**
- * ### Server running function.
+ * ### Run server.
  */
-async function runServer() {
-  const app = express();
-  const httpServer = http.createServer(app);
-  const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: (ctx) => {
-      return {
-        client,
-      };
-    },
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  });
+(async () => {
+  try {
+    initEnvironment();
 
-  await apolloServer.start();
+    const app = express();
 
-  app.use(graphqlUploadExpress());
-  app.use(
-    process.env.NODE_ENV === "production" ? logger("common") : logger("dev")
-  );
+    const httpServer = http.createServer(app);
 
-  apolloServer.applyMiddleware({ app, path: "/graphql" });
+    const apolloServer = new ApolloServer({
+      typeDefs,
+      resolvers,
+      context: (ctx) => {
+        return {
+          client,
+        };
+      },
+      plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    });
 
-  await new Promise((resolve: any) =>
-    httpServer.listen({ port: process.env.PORT }, resolve)
-  );
+    await apolloServer.start();
 
-  console.info("Server running 🚀");
-}
+    app.use(graphqlUploadExpress());
+    app.use(
+      process.env.NODE_ENV === PRODUCTION ? logger("common") : logger("dev")
+    );
+
+    apolloServer.applyMiddleware({ app, path: "/graphql" });
+
+    await new Promise((resolve: any) =>
+      httpServer.listen({ port: process.env.PORT || 3000 }, resolve)
+    );
+
+    console.info(
+      `🚀 Server running at ${
+        process.env.NODE_ENV === PRODUCTION
+          ? `...${process.env.PORT}${apolloServer.graphqlPath}`
+          : "http://localhost:"
+      }${process.env.PORT || 3000}${apolloServer.graphqlPath} 🚀`
+    );
+  } catch (e) {
+    console.error(e);
+  }
+})();

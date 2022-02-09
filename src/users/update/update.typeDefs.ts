@@ -4,7 +4,7 @@ export default gql`
   type UpdateUserResponse {
     ok: Boolean!
     data: User
-    error: SimpleError
+    error: CouserSimpleError
   }
 
   type Mutation {

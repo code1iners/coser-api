@@ -4,7 +4,7 @@ export default gql`
   type JoinResponse {
     ok: Boolean!
     data: User
-    error: SimpleError
+    error: CouserSimpleError
   }
 
   type Mutation {

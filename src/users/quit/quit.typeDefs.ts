@@ -3,7 +3,7 @@ import { gql } from "apollo-server-core";
 export default gql`
   type QuitResponse {
     ok: Boolean!
-    error: SimpleError
+    error: CouserSimpleError
   }
 
   type Mutation {

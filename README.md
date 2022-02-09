@@ -11,3 +11,4 @@ This is a codeliners app's authorization API server powered by Graphql.
 - [x] Find User.
 - [x] Update User.
 - [x] Quit User.
+- [ ] Me.
