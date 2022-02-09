@@ -1,5 +1,5 @@
 {
-  "name": "couser-api",
+  "name": "coser-api",
   "version": "1.0.0",
   "description": "Codeliners app's authorization api server powered by Graphql.",
   "scripts": {

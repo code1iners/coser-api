@@ -1,12 +1,12 @@
 import { gql } from "apollo-server-core";
 
 export default gql`
-  type CouserSimpleError {
+  type CoserSimpleError {
     code: Int
     message: String
   }
 
   type Query {
-    couserHello: String
+    coserHello: String
   }
 `;
