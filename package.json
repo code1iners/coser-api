@@ -4,8 +4,10 @@
   "description": "Codeliners app's authorization api server powered by Graphql.",
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/server --delay 1 --ext ts,js",
-    "migrate": "npx prisma migrate dev",
-    "studio": "npx prisma studio"
+    "migrate:dev": "npx prisma migrate dev",
+    "migrate": "npx prisma migrate",
+    "studio": "npx prisma studio",
+    "build": "tsc"
   },
   "keywords": [
     "auth",
