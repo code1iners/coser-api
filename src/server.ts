@@ -30,7 +30,7 @@ import { initEnvironment } from "./utils/envUtils";
         };
       },
       plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-      introspection: false,
+      introspection: true,
     });
 
     await apolloServer.start();
