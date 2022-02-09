@@ -7,7 +7,8 @@
     "migrate:dev": "npx prisma migrate dev",
     "migrate": "npx prisma migrate",
     "studio": "npx prisma studio",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node build/server"
   },
   "keywords": [
     "auth",
