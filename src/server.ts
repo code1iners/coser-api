@@ -1,5 +1,3 @@
-import { PRODUCTION } from "./utils/constants";
-require("dotenv").config();
 import http from "http";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
@@ -8,7 +6,7 @@ import { ApolloServerPluginDrainHttpServer } from "apollo-server-core/dist/plugi
 import { graphqlUploadExpress } from "graphql-upload";
 import logger from "morgan";
 import client from "./client";
-import { initEnvironment } from "./utils/envUtils";
+import { initEnvironment, ENV_PRODUCTION } from "./utils/envUtils";
 
 /**
  * ### Run server.
@@ -16,6 +14,10 @@ import { initEnvironment } from "./utils/envUtils";
 (async () => {
   try {
     initEnvironment();
+
+    const baseUri = process.env.BASE_URI || 'http://localhost'
+    const port = process.env.PORT || 3000;
+    const uri = `${baseUri}:${port}`
 
     const app = express();
 
@@ -36,7 +38,7 @@ import { initEnvironment } from "./utils/envUtils";
 
     app.use(graphqlUploadExpress());
     app.use(
-      process.env.NODE_ENV === PRODUCTION ? logger("common") : logger("dev")
+      process.env.NODE_ENV === ENV_PRODUCTION ? logger("common") : logger("dev")
     );
 
     apolloServer.applyMiddleware({ app, path: "/graphql" });
@@ -45,13 +47,7 @@ import { initEnvironment } from "./utils/envUtils";
       httpServer.listen({ port: process.env.PORT || 3000 }, resolve)
     );
 
-    console.info(
-      `🚀 Server running at ${
-        process.env.NODE_ENV === PRODUCTION
-          ? `...${process.env.PORT}${apolloServer.graphqlPath}`
-          : "http://localhost:"
-      }${process.env.PORT || 3000}${apolloServer.graphqlPath} 🚀`
-    );
+    console.info(`🚀 Server running at ${uri}${apolloServer.graphqlPath} 🚀`)
   } catch (e) {
     console.error(e);
   }

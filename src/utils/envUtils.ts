@@ -1,4 +1,5 @@
-import { DEVELOPMENT, PRODUCTION } from "./constants";
+export const ENV_DEVELOPMENT: 'development' = 'development';
+export const ENV_PRODUCTION: 'production' = 'production';
 
 /**
  * ### Initialize environment configuration file path.
@@ -13,11 +14,11 @@ export function initEnvironment() {
  */
 export function getCurrentEnvironment() {
   switch (process.env.NODE_ENV) {
-    case DEVELOPMENT:
-      return `${__dirname}/../../.env.${DEVELOPMENT}`;
-    case PRODUCTION:
-      return `${__dirname}/../../.env.${PRODUCTION}`;
+    case ENV_DEVELOPMENT:
+      return `${__dirname}/../../.env.${ENV_DEVELOPMENT}`;
+    case ENV_PRODUCTION:
+      return `${__dirname}/../../.env.${ENV_PRODUCTION}`;
     default:
-      return `${__dirname}/../../.env.${DEVELOPMENT}`;
+      return `${__dirname}/../../.env`;
   }
 }
