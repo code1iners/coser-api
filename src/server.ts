@@ -1,7 +1,7 @@
 import http from "http";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import { resolvers, typeDefs } from "./schema";
+import { schema, resolvers, typeDefs } from "./schema";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core/dist/plugin/drainHttpServer";
 import { graphqlUploadExpress } from "graphql-upload";
 import logger from "morgan";
@@ -15,17 +15,16 @@ import { initEnvironment, ENV_PRODUCTION } from "./utils/envUtils";
   try {
     initEnvironment();
 
-    const baseUri = process.env.BASE_URI || 'http://localhost'
+    const baseUri = process.env.BASE_URI || "http://localhost";
     const port = process.env.PORT || 3000;
-    const uri = `${baseUri}:${port}`
+    const uri = `${baseUri}:${port}`;
 
     const app = express();
 
     const httpServer = http.createServer(app);
 
     const apolloServer = new ApolloServer({
-      typeDefs,
-      resolvers,
+      schema,
       context: (ctx) => {
         return {
           client,
@@ -47,7 +46,7 @@ import { initEnvironment, ENV_PRODUCTION } from "./utils/envUtils";
       httpServer.listen({ port: process.env.PORT || 3000 }, resolve)
     );
 
-    console.info(`🚀 Server running at ${uri}${apolloServer.graphqlPath} 🚀`)
+    console.info(`🚀 Server running at ${uri}${apolloServer.graphqlPath} 🚀`);
   } catch (e) {
     console.error(e);
   }
