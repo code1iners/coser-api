@@ -7,6 +7,7 @@ import { graphqlUploadExpress } from "graphql-upload";
 import logger from "morgan";
 import client from "./client";
 import { initEnvironment, ENV_PRODUCTION } from "./utils/envUtils";
+import { findUserByToken } from "./utils/useUser";
 
 /**
  * ### Run server.
@@ -26,9 +27,13 @@ import { initEnvironment, ENV_PRODUCTION } from "./utils/envUtils";
     const apolloServer = new ApolloServer({
       schema,
       context: (ctx) => {
-        return {
-          client,
-        };
+        if (ctx.req) {
+          const { authorization } = ctx.req.headers;
+          return {
+            client,
+            loggedInUser: findUserByToken(authorization),
+          };
+        }
       },
       plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     });
