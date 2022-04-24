@@ -17,7 +17,7 @@ import { findUserByToken } from "./utils/useUser";
     initEnvironment();
 
     const baseUri = process.env.BASE_URI || "http://localhost";
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3001;
     const uri = `${baseUri}:${port}`;
 
     const app = express();
@@ -48,7 +48,7 @@ import { findUserByToken } from "./utils/useUser";
     apolloServer.applyMiddleware({ app, path: "/graphql" });
 
     await new Promise((resolve: any) =>
-      httpServer.listen({ port: process.env.PORT || 3000 }, resolve)
+      httpServer.listen({ port: process.env.PORT || 3001 }, resolve)
     );
 
     console.info(`🚀 Server running at ${uri}${apolloServer.graphqlPath} 🚀`);

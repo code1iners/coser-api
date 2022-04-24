@@ -8,4 +8,8 @@ export default gql`
   type Query {
     findUserById(id: Int!): User
   }
+
+  type Query {
+    findAll: [User]
+  }
 `;

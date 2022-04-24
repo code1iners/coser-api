@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "joinMethod" TEXT NOT NULL DEFAULT E'EMAIL';

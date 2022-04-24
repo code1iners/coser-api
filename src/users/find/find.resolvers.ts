@@ -4,6 +4,7 @@ import {
   ERROR_USERS_FIND_NOT_FOUND,
 } from "./../../utils/constants";
 import { Resolvers } from "../../types";
+import client from "../../client";
 
 const resolvers: Resolvers = {
   Query: {
@@ -27,6 +28,10 @@ const resolvers: Resolvers = {
      */
     findUserById: async (_, { id }, { client }) => {
       return client.user.findUnique({ where: { id } });
+    },
+
+    findAll: async () => {
+      return client.user.findMany({});
     },
   },
 };

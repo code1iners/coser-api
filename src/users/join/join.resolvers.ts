@@ -12,12 +12,16 @@ const resolvers: Resolvers = {
         email,
         username,
         password,
-      }: { email: string; username: string; password: string },
+        serviceId = "NULL",
+      }: {
+        email: string;
+        username: string;
+        password: string;
+        serviceId?: string;
+      },
       { client }
     ) => {
       try {
-        console.log(email, username, password);
-
         // Check unique email.
         const foundEmail: User | null = await client.user.findUnique({
           where: { email },
@@ -57,6 +61,7 @@ const resolvers: Resolvers = {
             email,
             username,
             password: encryptedPassword,
+            serviceId,
           },
         });
 

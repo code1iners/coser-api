@@ -8,6 +8,11 @@ export default gql`
   }
 
   type Mutation {
-    join(email: String!, username: String!, password: String!): JoinResponse!
+    join(
+      email: String!
+      username: String!
+      password: String!
+      serviceId: String
+    ): JoinResponse!
   }
 `;
